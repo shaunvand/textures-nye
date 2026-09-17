@@ -1,0 +1,236 @@
+<title>TEXTURES NYE</title>
+<meta name="description" content="TEXTURES — New Year's Eve techno, Cape Town. 31 December 2026. Matrixxman (US) headlining.">
+<style>
+  :root{
+    --ink:#08060a;
+    --oxblood:#3d0a12;
+    --wine:#8a1220;
+    --crimson:#c8102e;
+    --bone:#f3ede7;
+    --ash:#9a8f92;
+    --line:rgba(243,237,231,.14);
+    --maxw:920px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100%;
+  }
+  /* halftone texture canvas — the poster's crumpled oxblood foil */
+  #tex{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+  .veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(120% 90% at 70% 8%, rgba(200,16,46,.10), transparent 55%),
+      radial-gradient(140% 120% at 50% 120%, rgba(8,6,10,.0), var(--ink) 78%),
+      linear-gradient(180deg, rgba(8,6,10,.55), rgba(8,6,10,.2) 30%, rgba(8,6,10,.35) 70%, rgba(8,6,10,.85));
+  }
+  .scan{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.0) 0 2px, rgba(0,0,0,.18) 2px 3px);
+    mix-blend-mode:multiply}
+
+  .wrap{position:relative;z-index:3;max-width:var(--maxw);margin:0 auto;
+    padding-inline:22px;padding-block:clamp(28px,7vh,72px);
+    min-height:100%;display:flex;flex-direction:column;gap:clamp(30px,6vh,64px)}
+
+  .topbar{display:flex;justify-content:space-between;align-items:center;
+    font-family:"Space Mono",ui-monospace,monospace;font-size:11px;
+    letter-spacing:.28em;text-transform:uppercase;color:var(--ash)}
+  .topbar .live{display:inline-flex;align-items:center;gap:8px;color:var(--bone)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--crimson);
+    box-shadow:0 0 0 0 rgba(200,16,46,.7);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(200,16,46,.6)}70%{box-shadow:0 0 0 9px rgba(200,16,46,0)}100%{box-shadow:0 0 0 0 rgba(200,16,46,0)}}
+
+  .hero{display:flex;flex-direction:column;align-items:center;text-align:center;
+    gap:clamp(18px,3.5vh,30px);flex:1;justify-content:center}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:clamp(11px,2.4vw,13px);
+    letter-spacing:.42em;text-transform:uppercase;color:var(--ash);margin:0}
+
+  .wordmark{width:min(78vw,640px);color:var(--bone);filter:drop-shadow(0 6px 40px rgba(200,16,46,.35))}
+  .wordmark svg{width:100%;height:auto;display:block;fill:currentColor}
+  .nye{font-family:"Archivo";font-weight:800;font-size:clamp(15px,3.4vw,22px);
+    letter-spacing:.5em;margin-left:.5em;color:var(--crimson);text-transform:uppercase}
+  .markrow{display:flex;align-items:baseline;justify-content:center;gap:.4em;flex-wrap:wrap}
+
+  .tagline{margin:0;max-width:24ch;font-weight:700;text-transform:uppercase;
+    letter-spacing:.06em;line-height:1.15;font-size:clamp(19px,4.6vw,30px);
+    text-wrap:balance}
+  .tagline .hl{color:var(--crimson)}
+
+  /* countdown */
+  .count{display:flex;gap:clamp(10px,3vw,26px);justify-content:center;flex-wrap:wrap}
+  .cell{display:flex;flex-direction:column;align-items:center;min-width:64px}
+  .num{font-family:"Space Mono",monospace;font-weight:700;
+    font-size:clamp(34px,9vw,62px);line-height:1;font-variant-numeric:tabular-nums;
+    color:var(--bone)}
+  .lab{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--ash);margin-top:10px}
+  .sep{font-family:"Space Mono",monospace;font-size:clamp(30px,8vw,54px);
+    color:var(--wine);line-height:1;align-self:flex-start;margin-top:2px}
+
+  /* lineup */
+  .lineup{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .headliner{font-weight:800;text-transform:uppercase;letter-spacing:.02em;
+    font-size:clamp(30px,8.5vw,60px);line-height:.95;margin:0}
+  .headliner sup{font-size:.32em;font-weight:700;color:var(--crimson);
+    vertical-align:super;letter-spacing:.1em;margin-left:.25em}
+  .origin{display:block;font-family:"Space Mono",monospace;font-size:11px;
+    letter-spacing:.34em;color:var(--ash);text-transform:uppercase;margin-top:12px}
+  .support{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 0;
+    max-width:640px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+    font-size:clamp(14px,3.4vw,19px);color:var(--bone)}
+  .support span{padding:0 clamp(10px,2.4vw,16px);position:relative;white-space:nowrap}
+  .support span+span::before{content:"";position:absolute;left:0;top:50%;
+    transform:translateY(-50%);width:1px;height:1em;background:var(--line)}
+  .soundsystem{font-family:"Space Mono",monospace;letter-spacing:.28em;
+    text-transform:uppercase;font-size:clamp(11px,2.6vw,13px);color:var(--ash)}
+
+  /* tickets / venue */
+  .foot{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+  .cta{display:inline-flex;align-items:center;gap:12px;
+    border:1px solid var(--wine);color:var(--bone);background:rgba(138,18,32,.14);
+    font-family:"Space Mono",monospace;text-transform:uppercase;letter-spacing:.26em;
+    font-size:12px;padding:16px 26px;border-radius:2px;cursor:default}
+  .cta .tag{color:var(--crimson);font-weight:700}
+  .venue{display:flex;flex-direction:column;gap:6px;color:var(--ash);
+    font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase}
+  .venue strong{color:var(--bone);font-weight:700}
+  .partners{display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    justify-content:center;padding-top:22px;border-top:1px solid var(--line);
+    width:100%;max-width:520px;color:var(--ash);
+    font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.28em;
+    text-transform:uppercase}
+  .mark{width:26px;height:26px;color:var(--wine);opacity:.9}
+  .mark svg{width:100%;height:100%;display:block;fill:currentColor}
+
+  a{color:inherit}
+  @media (prefers-reduced-motion:reduce){.dot{animation:none}}
+  @media (max-width:520px){
+    .support span{padding:0 8px}
+    .cell{min-width:52px}
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap">
+
+<canvas id="tex"></canvas>
+<div class="veil"></div>
+<div class="scan"></div>
+
+<div class="wrap">
+  <header class="topbar">
+    <span class="live"><span class="dot"></span> Coming Soon</span>
+    <span>Cape Town · ZA</span>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">New Year's Eve · Techno</p>
+    <div class="markrow">
+      <div class="wordmark" role="img" aria-label="TEXTURES">
+        <svg viewBox="0 0 1780.48 458.03" xmlns="http://www.w3.org/2000/svg">
+          <path d="M239.53,215.74c-10.3-9.96-16.27-23.57-16.63-37.89-.08-13.86,5.36-27.18,15.13-37.01,9.77-9.83,23.06-15.35,36.91-15.35h67.32c9.66,0,18.88-4.08,25.37-11.24,6.49-7.16,9.65-16.73,8.71-26.35-2.23-17.87-17.57-31.19-35.58-30.89h-67.69c-15.29-.26-28.47-10.83-32.05-25.7C235.15,9.39,212.61-.72,192.92.04c-24.88,1.22-44.35,21.86-44.11,46.77.19,10.88,4.26,21.34,11.48,29.48,10.53,11.34,13.93,27.57,8.83,42.18l-5.24,14.19c-5.4,14.62-19.33,24.33-34.91,24.32H34.24c-9.67,0-18.88,4.09-25.37,11.25-6.49,7.16-9.65,16.73-8.71,26.35,2.2,17.86,17.52,31.18,35.51,30.88h92.3c15.63,0,30.62,6.21,41.67,17.26l205.29,205.29c6.84,6.83,16.24,10.46,25.9,9.98,9.65-.48,18.66-5.01,24.79-12.48,10.55-14.35,9.16-34.23-3.29-46.97l-182.8-182.8Z"/>
+          <polygon points="348.62 294.76 529.2 294.76 529.2 262.19 396.53 262.19 396.53 232.33 453.66 232.33 453.66 232.34 519.15 232.34 519.15 199.76 396.53 199.76 396.53 169.91 529.2 169.91 529.2 137.34 348.62 137.34 348.62 294.76"/>
+          <polygon points="734.86 137.34 711.86 137.34 653.92 189.04 595.98 137.34 535.51 137.37 623.66 216.05 535.51 294.72 595.98 294.76 653.92 243.05 711.86 294.76 772.36 294.76 684.17 216.05 736 169.79 809.22 169.79 809.22 294.76 857.13 294.76 857.13 169.79 931.49 169.79 931.49 137.3 734.86 137.3 734.86 137.34"/>
+          <path d="M1097.17,137.44l.03,88.2c0,1.15-.08,2.24-.16,3.33-.03.29-.04.57-.08.85-.11,1.05-.25,2.07-.44,3.06-.04.21-.09.4-.13.6-.67,3.17-1.74,6.03-3.24,8.59-.09.15-.17.31-.26.46-.48.78-1,1.53-1.56,2.25-.15.19-.3.38-.45.56-2.53,3.1-5.82,5.62-9.85,7.57-.23.11-.45.22-.68.32-.95.43-1.93.84-2.96,1.21-.2.07-.4.14-.6.2-3.37,1.16-7.14,1.99-11.32,2.5-.19.02-.36.05-.55.07-1.32.15-2.68.26-4.08.34-.33.02-.67.03-1,.05-1.44.07-2.9.12-4.42.12h-23.05c-14.07.19-24.81-2.42-32.07-7.71-.36-.26-.67-.55-1.01-.82-.6-.48-1.21-.96-1.76-1.49-.48-.46-.91-.95-1.35-1.44-.34-.38-.7-.75-1.02-1.15-.5-.63-.95-1.3-1.39-1.97-.2-.3-.41-.6-.59-.91-.47-.78-.87-1.61-1.27-2.45-.11-.24-.23-.47-.33-.71-.4-.93-.73-1.9-1.04-2.89-.06-.19-.12-.37-.17-.55-.31-1.06-.55-2.17-.75-3.31-.03-.14-.05-.27-.07-.41-.2-1.2-.33-2.44-.41-3.72,0-.05-.02-.1-.02-.15l-.04-90.6h-47.88l.09,101.25c0,.1.03.18.03.28.16,2.41.41,4.75.78,7.01.04.26.09.52.14.77.38,2.15.84,4.24,1.41,6.25.1.35.22.69.32,1.04.57,1.88,1.21,3.71,1.96,5.45.2.46.42.9.63,1.35.73,1.59,1.51,3.14,2.39,4.62.35.59.75,1.15,1.12,1.72.83,1.27,1.67,2.53,2.62,3.71.6.75,1.28,1.45,1.93,2.17.83.92,1.64,1.86,2.55,2.72,1.03.99,2.18,1.89,3.31,2.81.64.51,1.23,1.06,1.9,1.55,13.68,9.99,33.95,14.89,60.48,14.55h43.48c2.86,0,5.62-.1,8.33-.23.63-.03,1.27-.06,1.89-.1,2.63-.16,5.21-.36,7.69-.64.35-.04.68-.09,1.03-.14,7.88-.95,15-2.53,21.35-4.71.38-.13.76-.25,1.14-.38,1.93-.7,3.79-1.46,5.57-2.27.43-.2.85-.41,1.27-.61,7.6-3.67,13.81-8.43,18.59-14.27.29-.35.58-.7.85-1.06,1.05-1.36,2.04-2.77,2.94-4.24.17-.28.32-.58.49-.86,2.82-4.82,4.85-10.22,6.11-16.19.08-.38.18-.75.25-1.14.36-1.87.63-3.8.83-5.77.06-.53.1-1.06.14-1.6.17-2.05.3-4.12.31-6.28l-.07-96.73h-47.88Z"/>
+          <path d="M1337.64,244.12h0c1.37-.51,2.68-1.05,3.94-1.62.31-.14.6-.29.9-.43,5.37-2.59,9.75-5.95,13.13-10.08.2-.25.41-.5.6-.75.74-.97,1.44-1.96,2.08-3,.12-.2.23-.41.34-.61,1.99-3.41,3.43-7.22,4.31-11.44.06-.27.13-.53.18-.8.25-1.32.44-2.68.59-4.08.04-.37.07-.75.1-1.13.12-1.45.21-2.91.22-4.43l-.11-28.8c0-.07-.02-.13-.02-.2-.11-1.7-.29-3.35-.55-4.95-.03-.19-.06-.37-.09-.55-.27-1.52-.59-3-1-4.42-.07-.25-.15-.49-.23-.73-.41-1.33-.86-2.62-1.39-3.86-.14-.33-.3-.63-.44-.95-.52-1.12-1.06-2.21-1.69-3.26-.25-.42-.53-.81-.79-1.21-.59-.9-1.19-1.79-1.85-2.62-.43-.53-.9-1.02-1.36-1.54-.59-.65-1.16-1.31-1.8-1.92-.73-.7-1.54-1.34-2.34-1.98-.45-.36-.87-.75-1.35-1.09-9.67-7.06-23.98-10.52-42.73-10.27v-.05h-3.58v-.04h-106.25v.04h-29.07v157.42h47.91v-46.27h73.71l31.04,46.27,50.69-.04-33.81-50.39c.23-.08.46-.15.69-.23ZM1321.83,200.09c-.01.15-.03.32-.04.47-.06.58-.14,1.15-.25,1.7-.02.12-.05.22-.08.34-.37,1.75-.96,3.34-1.79,4.75-.05.09-.1.17-.15.25-.27.43-.56.85-.86,1.25-.08.11-.17.21-.25.31-1.4,1.71-3.22,3.11-5.45,4.19-.12.06-.25.12-.38.18-.52.24-1.07.46-1.64.67-.11.04-.22.08-.33.11-1.86.64-3.95,1.11-6.27,1.38-.11,0-.2.03-.3.04-.73.08-1.49.14-2.26.19-.19.01-.37.02-.56.03-.79.04-1.61.07-2.45.07h-83.47s0-46.22,0-46.22h76.67v.05h5.95s0,.01,0,.01c7.79-.1,13.73,1.34,17.75,4.27.2.14.37.3.56.45.33.27.67.53.97.82.27.25.5.53.75.8.19.21.39.42.57.64.28.35.52.72.77,1.09.11.17.23.33.33.5.26.43.49.89.7,1.36.06.13.12.26.18.4.22.51.41,1.05.58,1.6.03.1.06.2.09.31.17.59.31,1.21.42,1.84.02.08.03.15.04.23.11.66.18,1.35.23,2.06,0,.03,0,.06,0,.08l.05,11.97c0,.63-.04,1.24-.09,1.84Z"/>
+          <polygon points="1387.06 294.76 1567.63 294.76 1567.63 262.19 1434.97 262.19 1434.97 232.33 1492.1 232.33 1492.1 232.34 1557.59 232.34 1557.59 199.76 1434.97 199.76 1434.97 169.91 1567.63 169.91 1567.63 137.34 1387.06 137.34 1387.06 294.76"/>
+          <path d="M1780.45,241.87v-2.75s-.13,0-.13,0c-.03-.33-.02-.67-.05-1-.03-.38-.06-.76-.1-1.13-.15-1.4-.34-2.76-.59-4.08-.05-.27-.12-.54-.18-.8-.88-4.22-2.33-8.03-4.31-11.44-.12-.2-.22-.41-.34-.61-.64-1.04-1.34-2.04-2.08-3-.2-.25-.4-.5-.6-.75-3.37-4.13-7.76-7.49-13.13-10.08-.3-.15-.6-.29-.9-.43-1.26-.58-2.57-1.12-3.94-1.61-.26-.09-.54-.18-.8-.27-4.49-1.55-9.52-2.66-15.09-3.33-.25-.03-.48-.06-.73-.09-1.76-.2-3.57-.34-5.44-.45-.44-.03-.89-.05-1.34-.07-1.91-.09-3.87-.16-5.89-.16h-16.37l-52.52-.02s-6.81-.01-6.81-.01c-.84,0-1.65-.03-2.45-.07-.19,0-.37-.02-.56-.03-.77-.04-1.53-.11-2.26-.19-.1,0-.2-.03-.3-.04-6.46-.78-13.17-2.83-15.89-9.35-1.59-3.81-1.32-8.36.71-11.95,4.14-7.34,14.03-8.35,21.6-8.26,0-.02,5.95,0,5.95,0,0-.05,52.52-.05,52.52-.05,0,.05,5.96.04,5.96.04,7.79-.08,13.73,1.36,17.75,4.29.2.14.37.3.56.45.33.27.67.53.97.82.27.25.5.53.75.8.19.21.39.42.57.64.28.35.53.72.77,1.09.11.17.23.33.33.5.26.43.49.89.7,1.36.06.13.13.26.18.4.22.51.41,1.05.58,1.6.03.1.07.2.1.31.17.59.31,1.21.42,1.84,0,.08.03.15.04.23.11.66.18,1.35.23,2.06,0,.08.03,4.54.03,4.54h42.09l-.05-13.8c0-.07-.02-.13-.02-.2-.11-1.7-.29-3.35-.55-4.95-.03-.19-.06-.37-.09-.55-.27-1.52-.59-3-1-4.42-.07-.25-.15-.49-.23-.73-.41-1.33-.86-2.62-1.39-3.86-.14-.33-.3-.63-.44-.95-.52-1.12-1.06-2.21-1.68-3.26-.25-.42-.53-.81-.79-1.21-.59-.9-1.19-1.79-1.85-2.62-.42-.53-.9-1.02-1.36-1.54-.59-.65-1.16-1.31-1.8-1.92-.73-.7-1.54-1.34-2.34-1.98-.45-.36-.87-.75-1.34-1.09-9.67-7.06-23.98-10.52-42.73-10.27h-81.18c-18.74-.25-33.06,3.22-42.73,10.27-.47.34-.89.73-1.35,1.09-.8.64-1.61,1.29-2.34,1.98-.64.61-1.22,1.27-1.8,1.92-.46.51-.94,1-1.36,1.54-.67.83-1.27,1.73-1.85,2.62-.26.41-.54.79-.79,1.21-.62,1.04-1.17,2.14-1.69,3.26-.15.32-.31.63-.44.95-.53,1.24-.98,2.53-1.39,3.86-.08.25-.16.49-.23.73-.4,1.42-.73,2.9-1,4.42-.03.18-.06.36-.09.55-.26,1.56-.43,3.18-.54,4.85-.09,0-.15,12.83-.15,12.83,0,.4.05.77.06,1.16v2.27c.14.33.14.67.16,1,.03.38.06.76.1,1.13.15,1.4.34,2.76.59,4.08.05.27.12.54.18.8.88,4.22,2.33,8.03,4.31,11.44.12.2.22.41.34.61.64,1.04,1.33,2.04,2.08,3,.2.25.4.5.6.75,3.37,4.13,7.76,7.49,13.13,10.08.3.15.6.29.9.43,1.26.58,2.57,1.12,3.94,1.61.26.1.54.18.8.27,4.49,1.55,9.52,2.66,15.09,3.33.25.03.48.06.73.09,1.76.2,3.58.34,5.44.45.44.03.89.05,1.34.07,1.91.09,3.87.16,5.89.16h5.64l63.24.02s6.81.02,6.81.02c5.43,0,11.2.68,15.88,3.64,3.46,2.18,6.18,5.78,6.74,9.78.06.44.09.89.11,1.34.06,3.66-1.75,7.21-4.44,9.69-5.1,4.7-12.47,5.52-19.11,5.43,0,.02-5.95,0-5.95,0,0,.05-52.52.05-52.52.05,0-.05-5.96-.04-5.96-.04-7.79.08-13.73-1.36-17.75-4.29-.2-.14-.37-.3-.56-.45-.33-.27-.67-.53-.97-.82-.27-.25-.5-.53-.75-.8-.19-.21-.39-.42-.57-.64-.28-.35-.53-.72-.77-1.09-.11-.17-.23-.33-.33-.5-.26-.43-.49-.89-.7-1.36-.06-.13-.13-.26-.18-.4-.22-.51-.41-1.05-.58-1.6-.03-.1-.06-.2-.09-.31-.17-.59-.31-1.21-.42-1.84-.01-.08-.03-.15-.04-.23-.11-.66-.18-1.35-.23-2.06,0-.08-.03-4.54-.03-4.54h-42.09l.05,13.8c0,.07.02.13.02.2.11,1.7.29,3.35.55,4.95.03.18.07.37.1.55.27,1.52.59,3,.99,4.42.07.25.15.49.23.73.41,1.33.86,2.62,1.39,3.86.14.33.3.63.44.95.52,1.12,1.06,2.21,1.68,3.26.25.42.53.81.79,1.21.59.9,1.18,1.79,1.85,2.62.42.53.9,1.03,1.36,1.54.59.65,1.16,1.31,1.8,1.92.73.7,1.54,1.33,2.35,1.98.45.36.87.75,1.34,1.09,9.67,7.06,23.98,10.52,42.73,10.27,0,.05,81.18,0,81.18,0,18.74.25,33.06-3.22,42.73-10.27.47-.34.89-.73,1.35-1.09.8-.64,1.61-1.29,2.34-1.98.64-.61,1.21-1.27,1.8-1.92.46-.51.94-1,1.36-1.54.67-.83,1.27-1.73,1.85-2.62.26-.41.54-.79.79-1.21.62-1.04,1.17-2.14,1.69-3.26.15-.32.31-.63.44-.95.53-1.24.98-2.53,1.39-3.86.07-.25.15-.49.23-.73.4-1.42.73-2.9.99-4.42.03-.18.07-.36.1-.55.26-1.56.43-3.18.54-4.85.07,0,.12-12.83.12-12.83,0-.24-.03-.46-.04-.69Z"/>
+        </svg>
+      </div>
+      <span class="nye">NYE</span>
+    </div>
+    <h1 class="tagline">One night of futuristic techno. <span class="hl">31 December 2026.</span></h1>
+
+    <div class="count" id="count" aria-label="Countdown to New Year's Eve">
+      <div class="cell"><span class="num" id="dd">--</span><span class="lab">Days</span></div>
+      <span class="sep">:</span>
+      <div class="cell"><span class="num" id="hh">--</span><span class="lab">Hrs</span></div>
+      <span class="sep">:</span>
+      <div class="cell"><span class="num" id="mm">--</span><span class="lab">Min</span></div>
+      <span class="sep">:</span>
+      <div class="cell"><span class="num" id="ss">--</span><span class="lab">Sec</span></div>
+    </div>
+  </section>
+
+  <section class="lineup">
+    <p class="eyebrow">Headlining</p>
+    <h2 class="headliner">Matrixxman<sup>US</sup><span class="origin">The Grid · Berlin</span></h2>
+    <div class="support">
+      <span>Deano</span><span>Taf's</span><span>Vann</span><span>S.A.M</span><span>Mornway</span>
+    </div>
+    <p class="soundsystem">+ Textures Soundsystem</p>
+  </section>
+
+  <footer class="foot">
+    <div class="cta"><span>Tickets via Quicket</span><span class="tag">Coming Soon</span></div>
+    <div class="venue">
+      <span><strong>Alley.</strong> Cape Town</span>
+      <span>85 Auckland Street · Paarden Eiland</span>
+    </div>
+    <div class="partners">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 1433.35 1517.28" xmlns="http://www.w3.org/2000/svg"><path d="M793.47,714.67c-34.11-32.99-53.9-78.06-55.1-125.51-.27-45.91,17.77-90.03,50.13-122.58,32.37-32.56,76.37-50.86,122.28-50.86h223.01c32.01,0,62.54-13.52,84.04-37.24,21.5-23.72,31.98-55.42,28.85-87.27-7.39-59.2-58.2-103.32-117.85-102.33h-224.23c-50.65-.87-94.3-35.88-106.16-85.13C778.96,31.09,704.29-2.39,639.07.13c-82.4,4.03-146.91,72.42-146.12,154.92.63,36.04,14.12,70.68,38.04,97.65,34.88,37.56,46.15,91.33,29.27,139.73l-17.35,47.01c-17.88,48.42-64.04,80.58-115.66,80.57H113.43c-32.02,0-62.54,13.54-84.05,37.26-21.5,23.73-31.98,55.43-28.84,87.3,7.3,59.15,58.05,103.28,117.64,102.29h305.77c51.77,0,101.42,20.57,138.03,57.17l680.04,680.06c22.65,22.63,53.81,34.63,85.78,33.06,31.98-1.58,61.8-16.59,82.11-41.34,34.96-47.54,30.34-113.4-10.91-155.59l-605.55-605.55Z"/></svg>
+      </span>
+      <span>Warp Productions</span>
+      <span>d&amp;b audiotechnik</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // ---- Countdown to NYE, 21:00 SAST (UTC+2) ----
+  var target = new Date("2026-12-31T21:00:00+02:00").getTime();
+  var ids = {d:document.getElementById('dd'),h:document.getElementById('hh'),m:document.getElementById('mm'),s:document.getElementById('ss')};
+  function pad(n){return (n<10?'0':'')+n;}
+  function tick(){
+    var t = target - Date.now();
+    if(t<0) t=0;
+    var d=Math.floor(t/864e5), h=Math.floor(t%864e5/36e5), m=Math.floor(t%36e5/6e4), s=Math.floor(t%6e4/1e3);
+    ids.d.textContent=d; ids.h.textContent=pad(h); ids.m.textContent=pad(m); ids.s.textContent=pad(s);
+  }
+  tick(); setInterval(tick,1000);
+
+  // ---- Halftone oxblood texture (poster foil) ----
+  var c=document.getElementById('tex'), x=c.getContext('2d'), W,H,DPR;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){
+    DPR=Math.min(window.devicePixelRatio||1,2);
+    W=c.width=Math.floor(innerWidth*DPR); H=c.height=Math.floor(innerHeight*DPR);
+    c.style.width=innerWidth+'px'; c.style.height=innerHeight+'px';
+  }
+  size(); addEventListener('resize',size);
+  function draw(time){
+    var t=time*0.00006;
+    x.fillStyle='#08060a'; x.fillRect(0,0,W,H);
+    var step=Math.max(14,Math.floor(22*DPR));
+    for(var yy=0; yy<H+step; yy+=step){
+      for(var xx=0; xx<W+step; xx+=step){
+        var nx=xx/W, ny=yy/H;
+        // layered waves -> crumpled ridge field
+        var v = Math.sin(nx*7+t*1.3) + Math.cos(ny*9-t) + Math.sin((nx+ny)*6+t*0.7)
+              + Math.sin(Math.hypot(nx-0.68,ny-0.12)*16 - t*1.6);
+        v = (v+4)/8; // 0..1
+        var r = v*v; // bias dark
+        if(r<0.06) continue;
+        var rad = r*step*0.62;
+        // oxblood -> crimson highlight
+        var red = Math.floor(40 + r*168);
+        var g = Math.floor(6 + r*18);
+        var b = Math.floor(14 + r*30);
+        x.fillStyle='rgba('+red+','+g+','+b+','+(0.22+r*0.6)+')';
+        x.beginPath(); x.arc(xx,yy,rad,0,6.2832); x.fill();
+      }
+    }
+  }
+  if(reduce){ draw(12000); }
+  else{ (function loop(ts){ draw(ts||0); requestAnimationFrame(loop); })(); }
+})();
+</script>
