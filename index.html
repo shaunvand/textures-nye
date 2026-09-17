@@ -233,6 +233,9 @@
     var t=time*0.000028;                 // slow drift
     x.fillStyle='#08060a'; x.fillRect(0,0,W,H);
     var step=Math.max(16,Math.floor(26*DPR));
+    // two specular sheen bands travelling diagonally across the foil (poster shimmer)
+    var s1=((time*0.00007)%1)*1.6-0.3;             // -0.3 .. 1.3
+    var s2=(((time*0.00004+0.5)%1))*1.6-0.3;
     for(var yy=0; yy<H+step; yy+=step){
       for(var xx=0; xx<W+step; xx+=step){
         var nx=xx/W, ny=yy/H;
@@ -246,13 +249,17 @@
         // keep the centre calm (text sits there); let texture live at the edges
         var edge = Math.min(1, Math.abs(nx-0.5)*1.7 + ny*0.55);
         r *= 0.45 + 0.55*edge;
-        if(r<0.12) continue;
+        if(r<0.1) continue;
+        // sheen: ridges (high r) catch the moving light bands -> metallic shimmer
+        var diag = nx*0.62 + ny*0.38;
+        var sh = Math.exp(-Math.pow((diag-s1)*3.0,2)) + 0.7*Math.exp(-Math.pow((diag-s2)*3.4,2));
+        sh = Math.min(1, sh) * (r*r);    // only the brightest ridges glint
         var rad = r*step*0.5;
-        // deep oxblood, low brightness — pushed right back
-        var red = Math.floor(22 + r*92);
-        var g = Math.floor(4 + r*10);
-        var b = Math.floor(10 + r*22);
-        x.fillStyle='rgba('+red+','+g+','+b+','+(0.05+r*0.2)+')';
+        // deep oxblood base; sheen lifts toward a bright rose-white specular
+        var red = Math.floor(22 + r*92 + sh*128);
+        var g   = Math.floor(4  + r*10 + sh*74);
+        var b   = Math.floor(10 + r*22 + sh*86);
+        x.fillStyle='rgba('+red+','+g+','+b+','+(0.05 + r*0.2 + sh*0.3)+')';
         x.beginPath(); x.arc(xx,yy,rad,0,6.2832); x.fill();
       }
     }
