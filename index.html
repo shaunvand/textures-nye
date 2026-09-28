@@ -140,13 +140,15 @@ fbq('track','PageView');
   @media (prefers-reduced-motion:reduce){.dot{animation:none}}
   @media (max-width:520px){
     .support span{padding:0 8px}
-    .cell{min-width:0;flex:1 1 22%}
+    .cell{min-width:0;flex:1 1 0}
     /* even, tighter vertical rhythm — stop the hero from eating leftover height */
     .wrap{gap:clamp(24px,4.5vh,40px);padding-block:clamp(24px,5vh,44px);
       padding-inline:18px;min-height:auto}
     .hero{flex:0 1 auto;gap:clamp(16px,3vh,24px)}
     .wordmark{width:min(84vw,420px)}
-    .count{gap:8px}
+    .count{gap:6px;flex-wrap:nowrap}
+    .num{font-size:clamp(28px,9vw,44px)}
+    .lab{letter-spacing:.2em}
     .sep{font-size:clamp(24px,7vw,40px)}
     .lineup{gap:10px}
     .foot{gap:16px}
