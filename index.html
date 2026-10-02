@@ -281,6 +281,26 @@ fbq('track','PageView');
     }catch(e){ return QUICKET_URL; }
   }
   function onTicket(where){ track('trackCustom','TicketClick',{placement:where}); }
+  // The ad link lands here with Binom's click id (bt). Keep it 7 days so a return visit still credits the ad.
+  function adClick(){
+    var q=new URLSearchParams(location.search), bt=q.get('bt'), fb=q.get('fbclid')||'';
+    if(bt && !/^[a-z0-9]{10,40}$/i.test(bt)) bt=null;
+    try{
+      if(bt){ localStorage.setItem('tx_bt',JSON.stringify({bt:bt,fb:fb,t:Date.now()})); return {bt:bt,fb:fb}; }
+      var s=JSON.parse(localStorage.getItem('tx_bt')||'null');
+      if(s && s.bt && Date.now()-s.t < 7*864e5) return s;
+    }catch(e){ if(bt) return {bt:bt,fb:fb}; }
+    return null;
+  }
+  var AD=adClick();
+  // Log each Get Tickets press in Binom (campaign Textures_TicketPress) so a Quicket sale can be matched to its ad click.
+  var PRESS='https://yazitracker.com/4dc87c1d2f774e0fb42a93d3ebe7c686';
+  function logPress(where){
+    if(!AD) return;
+    var u=PRESS+'?bt='+encodeURIComponent(AD.bt)+'&fbclid='+encodeURIComponent(AD.fb||'')+'&src='+encodeURIComponent(where);
+    try{ fetch(u,{mode:'no-cors',keepalive:true,credentials:'omit',cache:'no-store'}); }
+    catch(e){ try{ (new Image()).src=u; }catch(_){} }
+  }
   var gal=document.getElementById('gallery');
   if(gal){ gal.addEventListener('click',function(){ track('trackCustom','GalleryClick',{placement:'top'}); }); }
   // Lineup: mark the first name on each wrapped row so it gets no leading divider.
@@ -294,7 +314,7 @@ fbq('track','PageView');
     var cta=document.getElementById('cta');
     if(cta){ var a=document.createElement('a'); a.className='cta'; a.id='cta'; a.href=href; a.rel='noopener';
       a.innerHTML='<span>Get Tickets</span><span class="tag">Quicket &rarr;</span>';
-      a.addEventListener('click',function(){ onTicket('footer'); }); cta.parentNode.replaceChild(a,cta); }
+      a.addEventListener('click',function(){ onTicket('footer'); logPress('footer'); }); cta.parentNode.replaceChild(a,cta); }
   }
 })();
 </script>
