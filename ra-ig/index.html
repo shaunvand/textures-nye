@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TEXTURES NYE — Instagram</title>
+<!-- Resident Advisor Instagram link: texturesfestival.co.za/ra-ig -> Instagram profile, tagged as RA.
+     Fires the pixel (InstagramClick, source=ra) so RA -> IG click-throughs are counted, then redirects. -->
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1112483968103165');
+fbq('track','PageView');
+fbq('trackCustom','InstagramClick',{placement:'ra-listing',source:'ra'});
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1112483968103165&ev=PageView&noscript=1"></noscript>
+<script>
+(function(){
+  setTimeout(function(){ location.replace('https://www.instagram.com/texturesfestival'); }, 400);
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://www.instagram.com/texturesfestival"></noscript>
+</head>
+<body style="margin:0;background:#08060a;color:#f3ede7;font-family:Arial,sans-serif;text-align:center;padding:40px 16px">
+<a href="https://www.instagram.com/texturesfestival" style="color:#f3ede7">TEXTURES on Instagram &rarr;</a>
+</body>
+</html>

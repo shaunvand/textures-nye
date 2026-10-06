@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TEXTURES NYE — Tickets</title>
+<!-- Resident Advisor ticket link: texturesfestival.co.za/ra-tickets -> Quicket, tagged as RA.
+     Fires the pixel (TicketClick, source=ra) so RA ticket click-throughs are counted, then redirects. -->
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1112483968103165');
+fbq('track','PageView');
+fbq('trackCustom','TicketClick',{placement:'ra-listing',source:'ra'});
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1112483968103165&ev=PageView&noscript=1"></noscript>
+<script>
+(function(){
+  var DEST='https://www.quicket.co.za/events/400102-textures-nye-ft-matrixxman-us/';
+  var u=new URL(DEST);
+  u.searchParams.set('utm_source','resident-advisor');
+  u.searchParams.set('utm_medium','listing');
+  u.searchParams.set('utm_campaign','textures_nye_2026');
+  // carry any incoming fbclid through to Quicket so its pixel can credit the click
+  try{ var fb=new URLSearchParams(location.search).get('fbclid'); if(fb) u.searchParams.set('fbclid',fb); }catch(e){}
+  setTimeout(function(){ location.replace(u.toString()); }, 400);
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://www.quicket.co.za/events/400102-textures-nye-ft-matrixxman-us/?utm_source=resident-advisor&amp;utm_medium=listing&amp;utm_campaign=textures_nye_2026"></noscript>
+</head>
+<body style="margin:0;background:#08060a;color:#f3ede7;font-family:Arial,sans-serif;text-align:center;padding:40px 16px">
+<a href="https://www.quicket.co.za/events/400102-textures-nye-ft-matrixxman-us/?utm_source=resident-advisor&amp;utm_medium=listing&amp;utm_campaign=textures_nye_2026" style="color:#f3ede7">Get tickets &rarr;</a>
+</body>
+</html>
